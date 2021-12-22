@@ -1,0 +1,63 @@
+ion-card.Active {
+  background-color: grey !important;
+  color: white;
+}
+
+ion-col {
+  display: flex;
+  flex-direction: row; 
+  justify-content: flex-start;
+}
+
+ion-content {
+  overflow: auto;
+}
+
+ion-grid.clockGrid {
+  display: inline-flex;
+  flex-direction: row; 
+  justify-content: flex-start;
+}
+
+ion-grid.clockGrid > ion-row {
+  display: flex;
+  vertical-align: bottom;
+}
+
+ion-grid.clockGrid > ion-row > ion-col {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+ion-grid.clockGrid > ion-row > ion-col.SliderView {
+  display: inline;
+}
+
+ion-grid.clockGrid > ion-row > ion-col.SliderView > div > ion-range {
+     display: flex;
+}
+
+ion-label {
+  margin-top: 4%;
+}
+
+ion-range::part(pin) {
+  transform: translate3d(0px, -24px, 0px) scale(1);
+}
+
+.ion-list-parent {
+  width: 100%;
+  overflow: auto;
+}
+
+.item {
+  width: 35px;
+  height: 35px;
+  text-align: center;
+  vertical-align: middle;
+  font-weight: bold;
+  padding-top: 10px;
+  font-size: 24px;
+  color: black;
+}

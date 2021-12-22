@@ -1,0 +1,7 @@
+{
+  "name": "SliderClock",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

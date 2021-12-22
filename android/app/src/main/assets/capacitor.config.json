@@ -1,0 +1,6 @@
+{
+	"appId": "com.segihovav.sliderclock",
+	"appName": "SliderClock",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

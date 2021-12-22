@@ -1,0 +1,75 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Slider Clock
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+     <ion-card class="ion-list-parent">
+          <ion-grid>
+               <ion-row>
+                    <ion-col size="2">
+                         <ion-label>Clock type</ion-label>
+                         <ion-select [(ngModel)]="currentView">
+                              <ion-select-option value="CardView">Card View</ion-select-option>
+                              <ion-select-option value="SliderView">Slider View</ion-select-option>
+                         </ion-select>
+                    </ion-col>
+
+                    <ion-col size="2" *ngIf="currentView != ''">
+                         <ion-toggle
+                              id="showDateTimeLabelToggle"
+                              color="accent"
+                              [(ngModel)]="showDateTimeLabel">
+                         </ion-toggle>
+
+                         <ion-label>Show Labels</ion-label>
+                    </ion-col>
+
+                    <ion-col size="2" *ngIf="currentView != ''">
+                         <ion-toggle
+                              id="pauseClock"
+                              color="accent"
+                              [(ngModel)]="pauseClock"
+                              (ionChange)="toggleClock()">
+                         </ion-toggle>
+
+                         <ion-label>Pause Clock</ion-label>
+                    </ion-col>
+               </ion-row>
+          </ion-grid>
+     </ion-card>
+     
+     <h1 *ngIf="currentView != ''"> {{ currentTime }}</h1>
+
+     <ion-card *ngIf="currentView != ''">
+          <!-- Label -->
+          <ion-grid class="clockGrid" *ngFor="let item of dateObj | keyvalue : orderOriginal;let i = index">
+               <ion-row>
+                    <ion-col [class]="currentView" *ngFor="let by of item | keyvalue; let j = index" size="12">
+                         <h1 *ngIf="by.value != null && isString(by.value) && isVisible && showDateTimeLabel">{{by.value}}</h1>
+                         
+                         <div *ngFor="let period of by.value | keyvalue">
+                              <div *ngIf="currentView == 'CardView' && isVisible">
+                                   <ion-card class="item" [class.Active]="getClass(i,period.value.Value)" *ngFor="let index of numberSequence(period.value.EndValue+1);let i = index;">
+                                        {{i}} 
+                                   </ion-card>
+                              </div>
+     
+                              <ion-range *ngIf="currentView == 'SliderView' && isVisible"
+                                   [(min)]="period.value.StartValue"
+                                   [(max)]="period.value.EndValue"
+                                   [(ngModel)]="period.value.Value"
+                                   [step]="1"
+                                   color="secondary"
+                                   pin="true"
+                                   ticks="true">
+                              </ion-range>
+                         </div>
+                    </ion-col>
+               </ion-row>
+          </ion-grid>
+     </ion-card>
+</ion-content>
